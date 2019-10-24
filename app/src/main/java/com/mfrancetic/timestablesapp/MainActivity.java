@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         numberList = new ArrayList<>();
 
-        if (chosenNumber < 0) {
+        if (chosenNumber < 1) {
             chosenNumber = 1;
         }
 
@@ -67,9 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateList(int chosenNumber) {
         numberList.clear();
-        if (chosenNumber < minValue) {
-            chosenNumber = minValue;
-        }
         for (int i = 1; i <= 10; i++) {
             numberList.add(chosenNumber * i);
         }
