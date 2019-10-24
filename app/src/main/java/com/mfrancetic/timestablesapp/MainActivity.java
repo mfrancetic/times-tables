@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int maxValue = 10;
 
+    private int step = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,25 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
         numberList = new ArrayList<>();
 
-//        chosenNumber = 2;
-
         if (chosenNumber < 0) {
             chosenNumber = 1;
         }
 
         updateList(chosenNumber);
-        slider.setProgress(minValue);
-        slider.setMax(maxValue);
+        slider.setMax((maxValue - minValue) / step);
 
         slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (i < minValue) {
-                    chosenNumber = minValue;
-                } else {
-                    chosenNumber = i;
-                }
+                chosenNumber = minValue + (i * step);
                 updateList(chosenNumber);
             }
 
