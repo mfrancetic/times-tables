@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     private int minValue = 1;
 
-    private int maxValue = 10;
+    private int maxValue = 20;
+
+    private int defaultValue = 10;
 
     private int step = 1;
 
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         updateList(chosenNumber);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                numberList);
+        listView.setAdapter(arrayAdapter);
+        slider.setProgress(defaultValue);
         slider.setMax((maxValue - minValue) / step);
 
         slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 chosenNumber = minValue + (i * step);
                 updateList(chosenNumber);
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -70,8 +77,5 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 1; i <= 10; i++) {
             numberList.add(chosenNumber * i);
         }
-        arrayAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1,
-                numberList);
-        listView.setAdapter(arrayAdapter);
     }
 }
