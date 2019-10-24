@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         numberList = new ArrayList<>();
 
         if (chosenNumber < 1) {
-            chosenNumber = 1;
+            chosenNumber = defaultValue;
         }
 
-        updateList(chosenNumber);
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 numberList);
         listView.setAdapter(arrayAdapter);
         slider.setProgress(defaultValue);
+        updateList(chosenNumber);
         slider.setMax((maxValue - minValue) / step);
 
         slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
